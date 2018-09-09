@@ -1,12 +1,10 @@
 package underwater.react.handler;
 
-import java.io.IOException;
 import java.net.Socket;
 
-import underwater.react.converter.DataConverter;
 import underwater.util.SocketWorker;
 
-public class DataInterChanger implements Runnable{
+public class DataInterChanger implements Runnable {
 	//
 	private SocketWorker socketWorker;
 
@@ -17,19 +15,20 @@ public class DataInterChanger implements Runnable{
 
 	public void interchangeData() {
 		//
-		//byte[] datas = socketWorker.read();
+		try {
+			byte[] datas = socketWorker.read();
 
-		DataConverter dataHandler = null;
-		dataHandler = new DataConverter();
+			DataConverter dataHandler = null;
+			dataHandler = new DataConverter();
 
-		//dataHandler.convertToSNMP(datas);
-//		try {
-//			if (response != null) {
-//				socketWorker.writeMessage(response.toJson());
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+			dataHandler.convertToSNMP(datas);
+
+			if (response != null) {
+				socketWorker.writeMessage(response.toJson());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		socketWorker.closeSocket();
 	}
