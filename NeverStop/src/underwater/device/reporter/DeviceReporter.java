@@ -8,13 +8,18 @@ public class DeviceReporter {
 	//
 	private ReportDispatcher dispatcher;
 	private PiDevice device;
-	private String ip;
-	private int port;
+	private final String IP = "127.0.0.1";
+	private final int PORT = 9999;
 	
-	public DeviceReporter(String ip, int port) {
+	public DeviceReporter(byte deviceId) {
+		dispatcher = ReportDispatcher.getInstance(IP, PORT);
+		device = new PiDevice(deviceId);
+	}
+	
+	public DeviceReporter(String ip, int port, byte deviceId) {
 		//
 		dispatcher = ReportDispatcher.getInstance(ip, port);
-		device = new PiDevice();
+		device = new PiDevice(deviceId);
 	}
 	
 	public void reportData() throws IOException {

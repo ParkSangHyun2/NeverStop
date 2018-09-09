@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import underwater.react.converter.DataConverter;
+import underwater.react.handler.DataInterChanger;
 import underwater.util.ReactFailException;
 
 public class GatewayReactor extends Thread {
@@ -43,7 +43,7 @@ public class GatewayReactor extends Thread {
 					clientSocket = serverSocket.accept();
 				}
 
-				pool.execute(new DataConverter(clientSocket));
+				pool.execute(new DataInterChanger(clientSocket));
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;

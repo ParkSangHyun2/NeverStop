@@ -6,9 +6,9 @@ public class PiDevice {
 	//
 	private DeviceStatus deviceData;
 	
-	public PiDevice() {
+	public PiDevice(byte deviceId) {
 		//
-		deviceData = new DeviceStatus();
+		deviceData = new DeviceStatus(deviceId);
 	}
 	
 	public byte[] getDeviceStatus() {

@@ -6,12 +6,17 @@ public class DeviceStatus {
 	private byte memory;
 	private byte powerBalence;
 
-	public DeviceStatus() {
+	private DeviceStatus() {
 		//
-		id = 1;
-		method = 2;
-		memory = 1;
-		powerBalence = 0;
+		this.method = 2;
+		this.memory = 1;
+		this.powerBalence = 0;
+	}
+	
+	public DeviceStatus(byte id) {
+		//
+		this();
+		this.id = id;
 	}
 	
 	public DeviceStatus(byte id, byte method, byte memory, byte powerBalence) {
