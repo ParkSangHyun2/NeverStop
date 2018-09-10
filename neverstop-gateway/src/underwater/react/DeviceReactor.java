@@ -6,18 +6,18 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import underwater.react.handler.DataInterChanger;
+import underwater.react.handler.DeviceDataHandler;
 import underwater.util.ReactFailException;
 
-public class GatewayReactor extends Thread {
+public class DeviceReactor extends Thread {
 	//
 	private int servicePort;
 	private ServerSocket serverSocket;
 	private ExecutorService pool;
 
-	public GatewayReactor() {
+	public DeviceReactor() {
 			//
-			this.servicePort = 9999;
+			this.servicePort = 8000;
 			pool = Executors.newCachedThreadPool();
 		}
 
@@ -43,7 +43,7 @@ public class GatewayReactor extends Thread {
 					clientSocket = serverSocket.accept();
 				}
 
-				pool.execute(new DataInterChanger(clientSocket));
+				pool.execute(new DeviceDataHandler(clientSocket));
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;

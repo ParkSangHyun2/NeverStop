@@ -1,14 +1,18 @@
 package underwater.react.handler;
 
+import java.io.IOException;
 import java.net.Socket;
 
+import underwater.agent.converter.DataConverter;
+import underwater.agent.storage.MapStorage;
+import underwater.entity.ClientMessage;
 import underwater.util.SocketWorker;
 
-public class DataInterChanger implements Runnable {
+public class DeviceDataHandler implements Runnable {
 	//
 	private SocketWorker socketWorker;
 
-	public DataInterChanger(Socket socket) {
+	public DeviceDataHandler(Socket socket) {
 		//
 		this.socketWorker = new SocketWorker(socket);
 	}
@@ -17,15 +21,10 @@ public class DataInterChanger implements Runnable {
 		//
 		try {
 			byte[] datas = socketWorker.read();
+			System.out.println(datas[0]);
 
-			DataConverter dataHandler = null;
-			dataHandler = new DataConverter();
-
-			dataHandler.convertToSNMP(datas);
-
-			if (response != null) {
-				socketWorker.writeMessage(response.toJson());
-			}
+			ClientMessage message = DataConverter.convertToMessageFrom(datas);
+			MapStorage.setMessage(Integer.parseInt(message.getDeviceId()), message);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

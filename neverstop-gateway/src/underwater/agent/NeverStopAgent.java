@@ -1,6 +1,6 @@
 package underwater.agent;
 
-public interface NerverStopAgent {
+public interface NeverStopAgent {
 	//
 	void setSource();
 	void getSource();
