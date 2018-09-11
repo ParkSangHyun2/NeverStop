@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefWidth="1010.0" styleClass="main-content-area" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <top>
+    <FlowPane fx:id="borderPaneTopFlowPane" alignment="CENTER_LEFT" styleClass="top-search-area" BorderPane.alignment="CENTER">
+      <children>
+        <Label text="Underwater Network Management System" />
+        <Label fx:id="checkComboBoxLabel">
+          <FlowPane.margin>
+            <Insets left="20.0" right="10.0" />
+          </FlowPane.margin>
+        </Label>
+      </children>
+      <BorderPane.margin>
+        <Insets bottom="12.0" />
+      </BorderPane.margin>
+    </FlowPane>
+  </top>
+  <center>
+    <GridPane hgap="6.0" vgap="6.0" BorderPane.alignment="CENTER">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints minWidth="-Infinity" prefWidth="300.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <children>
+        <BorderPane styleClass="content-panel">
+          <center>
+            <TableView fx:id="managedSensorTableView" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="deviceIdTableColumn" maxWidth="130.0" minWidth="-1.0" prefWidth="120.0" styleClass="center" text="Device ID" />
+                <TableColumn fx:id="deviceStateTableColumn" maxWidth="80.0" minWidth="-1.0" prefWidth="120.0" styleClass="center" text="State" />
+                        <TableColumn fx:id="powerBalanceTableColumn" maxWidth="134.0" minWidth="-1.0" prefWidth="134.0" styleClass="center" text="Power Balance" />
+                        <TableColumn fx:id="cpuTableColumn" prefWidth="75.0" styleClass="center" text="CPU" />
+                <TableColumn fx:id="memoryTableColumn" maxWidth="109.0" minWidth="-1.0" prefWidth="90.0" styleClass="center" text="Memory" />
+                        <TableColumn fx:id="responseTimeTableColumn" prefWidth="154.0" styleClass="center" text="Response Time" />
+              </columns>
+            </TableView>
+          </center>
+          <top>
+            <GridPane styleClass="content-panel-header" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+              <children>
+                <Label text="Underwater Sensor Manager" />
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button fx:id="checkButton" mnemonicParsing="false" text="Check" />
+                           </children>
+                        </FlowPane>
+              </children>
+              <BorderPane.margin>
+                <Insets bottom="6.0" />
+              </BorderPane.margin>
+            </GridPane>
+          </top>
+          <bottom>
+            <HBox BorderPane.alignment="CENTER">
+              <children>
+                        <Button fx:id="addButton" contentDisplay="CENTER" mnemonicParsing="false" text="Add New Sensor" />
+              </children>
+              <BorderPane.margin>
+                <Insets top="5.0" />
+              </BorderPane.margin>
+            </HBox>
+          </bottom>
+        </BorderPane>
+        <BorderPane prefWidth="200.0" styleClass="content-panel" GridPane.columnIndex="1">
+          <top>
+            <GridPane styleClass="content-panel-header" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+              <children>
+                <Label text="Sensor Detail Information" />
+              </children>
+              <BorderPane.margin>
+                <Insets bottom="6.0" />
+              </BorderPane.margin>
+            </GridPane>
+          </top>
+          <center>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER">
+              <content>
+                <GridPane hgap="6.0" vgap="6.0" BorderPane.alignment="CENTER">
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                  </rowConstraints>
+                  <children>
+                    <BorderPane maxHeight="1.7976931348623157E308" styleClass="sub-content-panel">
+                      <center>
+                        <BorderPane maxHeight="1.7976931348623157E308" minHeight="-Infinity" styleClass="sub-content-panel-content" BorderPane.alignment="CENTER">
+                          <center>
+                            <GridPane hgap="6.0" BorderPane.alignment="CENTER">
+                              <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="70.0" />
+                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                              <children>
+                                                <Label text="State" GridPane.rowIndex="1" />
+                                <Button fx:id="killButton" mnemonicParsing="false" styleClass="btn-danger" text="Shutdown" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Label text="Device ID" />
+                                                <TextField fx:id="deviceIdTextField" GridPane.columnIndex="1" />
+                                                <Text fx:id="deviceStateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Unknown" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label text="CPU / Memory" GridPane.rowIndex="3" />
+                                                <Label text="Power" GridPane.rowIndex="2" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <children>
+                                                      <TextField fx:id="cpuTextField" />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/" textAlignment="CENTER">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <TextField fx:id="memoryTextField" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <TextField fx:id="powerBalanceTextField" minWidth="64.0" prefHeight="28.0" prefWidth="64.0" />
+                                                   </children>
+                                                </HBox>
+                              </children>
+                            </GridPane>
+                          </center>
+                        </BorderPane>
+                      </center>
+                      <top>
+                        <FlowPane styleClass="sub-content-panel-header" BorderPane.alignment="CENTER">
+                          <children>
+                            <Label text="Inspection Information" />
+                          </children>
+                        </FlowPane>
+                      </top>
+                    </BorderPane>
+                    <BorderPane maxHeight="1.7976931348623157E308" styleClass="sub-content-panel" GridPane.rowIndex="2">
+                      <center>
+                        <BorderPane maxHeight="1.7976931348623157E308" minHeight="-Infinity" styleClass="sub-content-panel-content" BorderPane.alignment="CENTER">
+                          <top>
+                            <HBox BorderPane.alignment="CENTER" />
+                          </top>
+                                       <center>
+                                          <GridPane BorderPane.alignment="CENTER">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <TextField />
+                                             </children>
+                                          </GridPane>
+                                       </center>
+                        </BorderPane>
+                      </center>
+                      <top>
+                        <FlowPane styleClass="sub-content-panel-header" BorderPane.alignment="CENTER">
+                          <children>
+                            <Label text="Raw Data" />
+                          </children>
+                        </FlowPane>
+                      </top>
+                    </BorderPane>
+                    <BorderPane maxHeight="1.7976931348623157E308" styleClass="sub-content-panel" GridPane.rowIndex="3">
+                      <center>
+                        <BorderPane maxHeight="1.7976931348623157E308" minHeight="200.0" styleClass="sub-content-panel-content" BorderPane.alignment="CENTER">
+                                       <center>
+                                          <GridPane hgap="6.0" vgap="6.0" BorderPane.alignment="CENTER">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label text="device check interval (hour)">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </GridPane.margin></Label>
+                                                <Slider blockIncrement="1.0" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="12.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <padding>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </padding></Slider>
+                                                <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+                                                   <children>
+                                                      <Button contentDisplay="RIGHT" mnemonicParsing="false" styleClass="btn-success" text="Save" />
+                                                   </children>
+                                                </FlowPane>
+                                             </children>
+                                          </GridPane>
+                                       </center>
+                        </BorderPane>
+                      </center>
+                      <top>
+                        <HBox alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
+                          <children>
+                            <FlowPane prefWrapLength="0.0" styleClass="sub-content-panel-header">
+                              <children>
+                                <Label text="Controls" />
+                              </children>
+                            </FlowPane>
+                            <Label fx:id="snapshotDateTimeLabel">
+                              <padding>
+                                <Insets left="10.0" />
+                              </padding>
+                            </Label>
+                          </children>
+                        </HBox>
+                      </top>
+                    </BorderPane>
+
+                  </children>
+                </GridPane>
+
+              </content>
+            </ScrollPane>
+
+          </center>
+        </BorderPane>
+      </children>
+    </GridPane>
+  </center>
+</BorderPane>
