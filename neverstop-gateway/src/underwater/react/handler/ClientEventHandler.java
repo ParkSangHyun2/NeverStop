@@ -5,8 +5,11 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
-import underwater.entity.ClientMessage;
+import underwater.agent.storage.MapStorage;
+import underwater.tranfer.DeviceCommander;
 import underwater.util.ClientSocketWorker;
+import underwater.util.RequestMessage;
+import underwater.util.ResponseMessage;
 
 public class ClientEventHandler implements Runnable {
 	//
@@ -19,8 +22,31 @@ public class ClientEventHandler implements Runnable {
 
 	private String handleMessage(String json) {
 		//
-		ClientMessage = new Gson().fromJson(json, ClientMessage.class);
-		return null;
+		RequestMessage message = new Gson().fromJson(json, RequestMessage.class);
+		ResponseMessage responseMessage = null;
+		String methodName = message.getMethodName();
+		int deviceId = message.getDeviceId();
+		int interval = message.getInterval();
+		byte[] byteInterval = {(byte)interval};
+		
+		switch(methodName) {
+		case "get":
+			responseMessage = MapStorage.getMessages().get(deviceId);
+			break;
+		case "set":
+			DeviceCommander commander = new DeviceCommander(deviceId);
+			try {
+				commander.reportData(byteInterval);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			default:
+				//--
+		}
+		
+		return new Gson().toJson(responseMessage);
 	}
 
 	@Override

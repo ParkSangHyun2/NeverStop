@@ -1,11 +1,11 @@
 package underwater.boot;
 
-import underwater.react.DeviceReactor;
+import underwater.react.GatewayReactor;
 
 public class GatewayBooter {
 	//
 	public static void main(String[] args) {
-		DeviceReactor reactor = new DeviceReactor();
+		GatewayReactor reactor = new GatewayReactor();
 		reactor.run();
 	}
 }

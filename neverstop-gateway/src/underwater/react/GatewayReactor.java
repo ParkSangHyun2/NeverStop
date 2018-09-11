@@ -6,16 +6,17 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import underwater.react.handler.ClientEventHandler;
 import underwater.react.handler.DeviceDataHandler;
 import underwater.util.ReactFailException;
 
-public class DeviceReactor extends Thread {
+public class GatewayReactor extends Thread {
 	//
 	private int servicePort;
 	private ServerSocket serverSocket;
 	private ExecutorService pool;
 
-	public DeviceReactor() {
+	public GatewayReactor() {
 			//
 			this.servicePort = 8000;
 			pool = Executors.newCachedThreadPool();
@@ -42,8 +43,12 @@ public class DeviceReactor extends Thread {
 					System.out.println("Connecting..");
 					clientSocket = serverSocket.accept();
 				}
-
-				pool.execute(new DeviceDataHandler(clientSocket));
+				if(clientSocket.getPort() == 7000) {
+					pool.execute(new ClientEventHandler(clientSocket));	
+				}else {
+					pool.execute(new DeviceDataHandler(clientSocket));
+				}
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;

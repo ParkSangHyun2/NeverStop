@@ -1,10 +1,10 @@
 package underwater.agent.converter;
 
-import underwater.entity.ClientMessage;
+import underwater.util.ResponseMessage;
 
 public class DataConverter {
 	//
-	public static ClientMessage convertToMessageFrom(byte[] datas) {
+	public static ResponseMessage convertToMessageFrom(byte[] datas) {
 		//
 		String power;
 		String reportInterval;
@@ -82,6 +82,6 @@ public class DataConverter {
 			memoryState = "ERROR";
 		}
 
-		return new ClientMessage(String.valueOf(datas[0]), power, reportInterval, bettaryState, cpuState, memoryState);
+		return new ResponseMessage(String.valueOf(datas[0]), power, reportInterval, bettaryState, cpuState, memoryState);
 	}
 }
