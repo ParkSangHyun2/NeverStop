@@ -1,6 +1,6 @@
 package underwater.util;
 
-public class ResponseMessage {
+public class ClientMessage {
 	//
 	private String deviceId;
 	private String State;
@@ -9,11 +9,11 @@ public class ResponseMessage {
 	private String memory;
 	private String responseTime;
 	
-	public ResponseMessage() {
+	public ClientMessage() {
 		
 	}
 
-	public ResponseMessage(String deviceId, String state, String powerBalence, String cpu, String memory,
+	public ClientMessage(String deviceId, String state, String powerBalence, String cpu, String memory,
 			String responseTime) {
 		super();
 		this.deviceId = deviceId;

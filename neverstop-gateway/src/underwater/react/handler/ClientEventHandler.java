@@ -9,8 +9,9 @@ import underwater.agent.storage.MapStorage;
 import underwater.tranfer.DeviceCommander;
 import underwater.util.ClientSocketWorker;
 import underwater.util.RequestMessage;
-import underwater.util.ResponseMessage;
+import underwater.util.ClientMessage;
 
+@Deprecated
 public class ClientEventHandler implements Runnable {
 	//
 	private ClientSocketWorker socketWorker;
@@ -23,7 +24,7 @@ public class ClientEventHandler implements Runnable {
 	private String handleMessage(String json) {
 		//
 		RequestMessage message = new Gson().fromJson(json, RequestMessage.class);
-		ResponseMessage responseMessage = null;
+		ClientMessage responseMessage = null;
 		String methodName = message.getMethodName();
 		int deviceId = message.getDeviceId();
 		int interval = message.getInterval();

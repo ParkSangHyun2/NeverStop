@@ -3,22 +3,22 @@ package underwater.agent.storage;
 import java.util.HashMap;
 import java.util.Map;
 
-import underwater.util.ResponseMessage;
+import underwater.util.ClientMessage;
 
 public class MapStorage {
 	//
-	public static Map<Integer, ResponseMessage> messages = new HashMap<Integer, ResponseMessage>();
+	public static Map<Integer, ClientMessage> messages = new HashMap<Integer, ClientMessage>();
 	
-	public static ResponseMessage getMessage(int deviceId) {
+	public static ClientMessage getMessage(int deviceId) {
 		//
 		return messages.get(deviceId);
 	}
 	
-	public static Map<Integer, ResponseMessage> getMessages(){
+	public static Map<Integer, ClientMessage> getMessages(){
 		return messages;
 	}
 	
-	public static void setMessage(int deviceId, ResponseMessage message) {
+	public static void setMessage(int deviceId, ClientMessage message) {
 		messages.put(deviceId, message);
 	}
 }

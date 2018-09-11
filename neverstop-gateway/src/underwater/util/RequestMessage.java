@@ -1,5 +1,6 @@
 package underwater.util;
 
+@Deprecated
 public class RequestMessage {
 	//
 	private String methodName;

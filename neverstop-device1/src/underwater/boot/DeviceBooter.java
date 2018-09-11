@@ -7,8 +7,14 @@ import underwater.reporter.timer.DeviceTimer;
 public class DeviceBooter {
 	//
 	public static void main(String[] args) {
-		//
-		NeverStopDevice device = NeverStopDevice.getInstance((byte)1, (byte)1, (byte)0, (byte)0, (byte)0, (byte)0);
+		//	Order By : deviceId, power, reportInterval, bettaryStatus, cpuStatus, memoryStatus
+		NeverStopDevice device = NeverStopDevice.getInstance(
+				(byte)1, 
+				(byte)1, 
+				(byte)0, 
+				(byte)0, 
+				(byte)0, 
+				(byte)0);
 		
 		DeviceTimer timer = new DeviceTimer(1, 1, device);
 		timer.runDevice();
