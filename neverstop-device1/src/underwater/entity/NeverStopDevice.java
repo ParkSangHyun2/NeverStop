@@ -1,4 +1,4 @@
-package kr.co.nextree.entity;
+package underwater.entity;
 
 public class NeverStopDevice {
 	//

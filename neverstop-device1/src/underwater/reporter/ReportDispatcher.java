@@ -1,12 +1,12 @@
-package kr.co.nextree.reporter;
+package underwater.reporter;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import kr.co.nextree.util.DispatchFailException;
-import kr.co.nextree.util.SocketWorker;
+import underwater.util.DispatchFailException;
+import underwater.util.SocketWorker;
 
 
 public class ReportDispatcher {

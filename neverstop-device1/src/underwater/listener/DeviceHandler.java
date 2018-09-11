@@ -1,10 +1,10 @@
-package kr.co.nextree.listener;
+package underwater.listener;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import kr.co.nextree.entity.NeverStopDevice;
-import kr.co.nextree.util.SocketWorker;
+import underwater.entity.NeverStopDevice;
+import underwater.util.SocketWorker;
 
 public class DeviceHandler implements Runnable {
 	//

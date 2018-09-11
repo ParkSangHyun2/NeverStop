@@ -1,8 +1,8 @@
-package kr.co.nextree.reporter;
+package underwater.reporter;
 
 import java.io.IOException;
 
-import kr.co.nextree.entity.NeverStopDevice;
+import underwater.entity.NeverStopDevice;
 
 public class DeviceReporter {
 	//

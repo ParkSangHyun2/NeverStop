@@ -1,4 +1,4 @@
-package kr.co.nextree.listener;
+package underwater.listener;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,8 +6,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import kr.co.nextree.entity.NeverStopDevice;
-import kr.co.nextree.util.ReactFailException;
+import underwater.entity.NeverStopDevice;
+import underwater.util.ReactFailException;
 
 public class DeviceReactor {
 	private int servicePort;

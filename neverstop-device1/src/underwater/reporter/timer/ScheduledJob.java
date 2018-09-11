@@ -1,10 +1,10 @@
-package kr.co.nextree.reporter.timer;
+package underwater.reporter.timer;
 
 import java.io.IOException;
 import java.util.TimerTask;
 
-import kr.co.nextree.entity.NeverStopDevice;
-import kr.co.nextree.reporter.DeviceReporter;
+import underwater.entity.NeverStopDevice;
+import underwater.reporter.DeviceReporter;
 
 public class ScheduledJob extends TimerTask {
 	//

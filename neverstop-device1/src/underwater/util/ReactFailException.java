@@ -1,4 +1,4 @@
-package kr.co.nextree.util;
+package underwater.util;
 
 public class ReactFailException extends RuntimeException {
 	//

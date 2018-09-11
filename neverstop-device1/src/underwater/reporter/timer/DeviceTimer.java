@@ -1,8 +1,8 @@
-package kr.co.nextree.reporter.timer;
+package underwater.reporter.timer;
 
 import java.util.Timer;
 
-import kr.co.nextree.entity.NeverStopDevice;
+import underwater.entity.NeverStopDevice;
 
 public class DeviceTimer {
 	//
