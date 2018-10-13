@@ -14,6 +14,7 @@ public class Sensor {
     private SystemMetric systemMetric;
     private PowerBalance powerBalance;
     private DeviceState deviceState;
+    private String[] rowDataArray;
     private String responseTimestamp;
 
     public Sensor() {
@@ -50,6 +51,14 @@ public class Sensor {
 
     public void setDeviceState(DeviceState deviceState) {
         this.deviceState = deviceState;
+    }
+
+    public String[] getRowDataArray() {
+        return rowDataArray;
+    }
+
+    public void setRowDataArray(String[] rowDataArray) {
+        this.rowDataArray = rowDataArray;
     }
 
     public String getResponseTimestamp() {

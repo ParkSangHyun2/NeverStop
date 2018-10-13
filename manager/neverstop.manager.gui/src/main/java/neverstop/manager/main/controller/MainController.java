@@ -1,23 +1,24 @@
-
-
 package neverstop.manager.main.controller;
 
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Random;
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import neverstop.manager.adaptor.requester.GatewayRequester;
 import neverstop.manager.entity.sensor.DeviceState;
 import neverstop.manager.entity.sensor.PowerBalance;
+import neverstop.manager.entity.sensor.Sensor;
 import neverstop.manager.main.model.SensorModel;
 
 /**
@@ -41,9 +42,16 @@ public class MainController {
     @FXML private TextField powerBalanceTextField;
     @FXML private TextField cpuTextField;
     @FXML private TextField memoryTextField;
+    @FXML private TextField rowDataTextField;
+
+    @FXML private Button checkButton;
+
+    private Properties properties;
 
     private SensorModel sensorModel;
     private ObservableList<SensorModel> sensorModels;
+
+    private GatewayRequester requester;
 
     public MainController() {
         //
@@ -54,7 +62,7 @@ public class MainController {
         //
         initControls();
         bindEvents();
-        initTestData();
+//        addSampleData();
     }
 
     private void initControls() {
@@ -79,9 +87,17 @@ public class MainController {
                 drawDetailInfromation();
             }
         });
+
+        checkButton.setOnAction(event -> {
+            for (SensorModel sensorModel : sensorModels) {
+                Sensor sensor = requester.checkSensor(sensorModel.deviceIdProperty().get());
+                sensorModel.setValues(sensor);
+            }
+        });
+
     }
 
-    private void initTestData() {
+    private void addSampleData() {
         //
         sensorModels.clear();
 

@@ -23,6 +23,7 @@ public class SensorModel {
     private SimpleIntegerProperty cpuUsageProperty;
     private SimpleIntegerProperty memoryUsageProperty;
     private SimpleStringProperty responseTimestampProperty;
+    private SimpleStringProperty rowDataProperty;
 
     public SensorModel() {
         this.deviceIdProperty = new SimpleStringProperty();
@@ -31,15 +32,22 @@ public class SensorModel {
         this.cpuUsageProperty = new SimpleIntegerProperty();
         this.memoryUsageProperty = new SimpleIntegerProperty();
         this.responseTimestampProperty = new SimpleStringProperty();
+        this.rowDataProperty = new SimpleStringProperty();
     }
 
     public SensorModel(Sensor sensor) {
         //
+        setValues(sensor);
+    }
+
+    public void setValues(Sensor sensor) {
         this.deviceIdProperty.set(sensor.getDeviceId());
         this.deviceStateProperty.set(sensor.getDeviceState());
         this.powerBalanceProperty.set(sensor.getPowerBalance());
         this.cpuUsageProperty.set(sensor.getSystemMetric().getCpuUsage());
         this.memoryUsageProperty.set(sensor.getSystemMetric().getMemoryUsage());
+        this.rowDataProperty.set(String.join("", sensor.getRowDataArray()));
+
     }
 
     public void setValues(SensorModel sensor) {

@@ -1,5 +1,3 @@
-
-
 package neverstop.manager.adaptor.requester;
 
 import java.util.ArrayList;

@@ -1,5 +1,3 @@
-
-
 package neverstop.manager.main;
 
 import javafx.application.Application;

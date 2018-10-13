@@ -1,5 +1,3 @@
-
-
 package neverstop.manager.adaptor.requester;
 
 import java.io.BufferedReader;
@@ -22,17 +20,19 @@ import neverstop.manager.entity.sensor.Sensor;
 public class GatewaySocketRequester implements GatewayRequester {
     //
     private String gatewayIpAddress;
+    private int port;
 
     public GatewaySocketRequester() {
         //
         this.gatewayIpAddress = "localhost";
+        this.port = 18080;
     }
 
     public Sensor checkSensor(String deviceId) {
         //
         Socket socket = null;
         try {
-            socket = new Socket(gatewayIpAddress, 18080);
+            socket = new Socket(gatewayIpAddress, port);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
