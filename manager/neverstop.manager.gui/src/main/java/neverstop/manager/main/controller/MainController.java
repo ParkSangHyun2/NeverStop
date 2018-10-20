@@ -15,11 +15,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import neverstop.manager.adaptor.requester.GatewayRequester;
 import neverstop.manager.entity.sensor.DeviceState;
 import neverstop.manager.entity.sensor.PowerBalance;
-import neverstop.manager.entity.sensor.Sensor;
 import neverstop.manager.main.model.SensorModel;
+import neverstop.neverstop.client.request.SNMPRequester;
 
 /**
  * MainController
@@ -51,18 +50,27 @@ public class MainController {
     private SensorModel sensorModel;
     private ObservableList<SensorModel> sensorModels;
 
-    private GatewayRequester requester;
+    private SNMPRequester requester;
 
     public MainController() {
         //
         this.sensorModels = FXCollections.observableArrayList();
+        this.requester = new SNMPRequester();
+
     }
 
     public void initialize() {
         //
         initControls();
         bindEvents();
+        getData();
+
+//        TODO: Remove sample data.
 //        addSampleData();
+    }
+
+    private void getData() {
+        //
     }
 
     private void initControls() {
@@ -90,8 +98,8 @@ public class MainController {
 
         checkButton.setOnAction(event -> {
             for (SensorModel sensorModel : sensorModels) {
-                Sensor sensor = requester.checkSensor(sensorModel.deviceIdProperty().get());
-                sensorModel.setValues(sensor);
+//                Sensor sensor = requester.checkSensor(sensorModel.deviceIdProperty().get());
+//                sensorModel.setValues(sensor);
             }
         });
 

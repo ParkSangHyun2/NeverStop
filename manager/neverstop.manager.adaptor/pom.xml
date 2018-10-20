@@ -16,6 +16,10 @@
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
     <dependency>
+      <groupId>neverstop</groupId>
+      <artifactId>neverstop.agent</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.8.0</version>
@@ -34,6 +38,12 @@
       <groupId>org.snmp4j</groupId>
       <artifactId>snmp4j-agent</artifactId>
       <version>2.6.3</version>
+    </dependency>
+    <dependency>
+      <groupId>neverstop</groupId>
+      <artifactId>neverstop.agent</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 
