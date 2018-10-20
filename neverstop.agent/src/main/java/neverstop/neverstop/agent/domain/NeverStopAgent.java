@@ -36,20 +36,25 @@ public class NeverStopAgent {
 		try {
 			snmpAgent = new SNMPAgent(address);
 
-			MOTableBuilder builder = new MOTableBuilder(new OID(interfaceOID.getOID()))
-					.addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
-					.addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
-					.addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
-					.addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
-					.addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
-					//
-					.addRowValue(new OctetString(DeviceState.POWERBALANCE))
-					.addRowValue(new OctetString(DeviceState.PROCESSOR))
-					.addRowValue(new OctetString(DeviceState.MEMORY))
-					.addRowValue(new OctetString(DeviceState.NETBANDWIDTH))
-					.addRowValue(new OctetString(DeviceState.ERRORHANDLER));
+			for (int i = 0; i < 4; i++) {
+                DeviceState deviceState = new DeviceState(String.valueOf(i));
+                MOTableBuilder builder = new MOTableBuilder(new OID(interfaceOID.getOID()))
+                        .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
+                        .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
+                        .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
+                        .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
+                        .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
+                        .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
+                        //
+                        .addRowValue(new OctetString(deviceState.getDeviceId()))
+                        .addRowValue(new OctetString(deviceState.getPowerBalance()))
+                        .addRowValue(new OctetString(deviceState.getProcessor()))
+                        .addRowValue(new OctetString(deviceState.getMemory()))
+                        .addRowValue(new OctetString(deviceState.getNetBandWith()))
+                        .addRowValue(new OctetString(deviceState.getErrorHandler()));
 
-			snmpAgent.registerManagedObject(builder.build());
+                snmpAgent.registerManagedObject(builder.build());
+            }
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

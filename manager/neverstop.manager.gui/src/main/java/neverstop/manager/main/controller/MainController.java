@@ -57,21 +57,21 @@ public class MainController {
         //
         this.deviceModels = FXCollections.observableArrayList();
         this.requester = new GatewaySNMPRequester();
-
     }
 
     public void initialize() {
         //
         initControls();
         bindEvents();
-        getData();
     }
 
     private void getData() {
         //
         deviceModels.clear();
-        Device device = requester.checkSensor("1");
-        deviceModels.add(new DeviceModel(device));
+        for (int i = 0; i < 4; i++) {
+            Device device = requester.checkSensor(String.valueOf(i));
+            deviceModels.add(new DeviceModel(device));
+        }
     }
 
     private void initControls() {
@@ -85,6 +85,8 @@ public class MainController {
         responseTimeTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, String>("responseTimestamp"));
 
         deviceModel = new DeviceModel();
+
+        rowDataTextField.textProperty().bindBidirectional(deviceModel.rowDataProperty());
         deviceIdTextField.textProperty().bindBidirectional(deviceModel.deviceIdProperty());
     }
 
@@ -98,12 +100,8 @@ public class MainController {
         });
 
         checkButton.setOnAction(event -> {
-            for (DeviceModel deviceModel : deviceModels) {
-//                Device sensor = requester.checkSensor(deviceModel.deviceIdProperty().get());
-//                deviceModel.setValues(sensor);
-            }
+            getData();
         });
-
     }
 
     private void addSampleData() {
@@ -137,5 +135,7 @@ public class MainController {
         powerBalanceTextField.setText(deviceModel.powerBalanceProperty().getValue().name());
         cpuTextField.textProperty().set(String.valueOf(deviceModel.cpuUsageProperty().get()));
         memoryTextField.textProperty().set(String.valueOf(deviceModel.memoryUsageProperty().get()));
+        System.out.println(deviceModel.rowDataProperty().get());
+        rowDataTextField.textProperty().set(deviceModel.rowDataProperty().get());
     }
 }

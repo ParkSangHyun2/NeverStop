@@ -29,7 +29,7 @@ public class Launcher extends Application {
         loader.setController(controller);
         BorderPane rootLayout = new BorderPane();
         rootLayout.setCenter((Node) loader.load());
-        Scene scene = new Scene(rootLayout, 1000, 800);
+        Scene scene = new Scene(rootLayout, 1100, 800);
         scene.getStylesheets().add("layout/layout.css");
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);

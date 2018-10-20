@@ -45,7 +45,7 @@
                         <TableColumn fx:id="powerBalanceTableColumn" maxWidth="134.0" minWidth="-1.0" prefWidth="134.0" styleClass="center" text="Power Balance" />
                         <TableColumn fx:id="cpuTableColumn" prefWidth="75.0" styleClass="center" text="CPU" />
                 <TableColumn fx:id="memoryTableColumn" maxWidth="109.0" minWidth="-1.0" prefWidth="90.0" styleClass="center" text="Memory" />
-                        <TableColumn fx:id="responseTimeTableColumn" prefWidth="154.0" styleClass="center" text="Response Time" />
+                        <TableColumn fx:id="responseTimeTableColumn" prefWidth="180.0" styleClass="center" text="Response Time" />
               </columns>
             </TableView>
           </center>
@@ -74,7 +74,6 @@
           <bottom>
             <HBox BorderPane.alignment="CENTER">
               <children>
-                        <Button fx:id="addButton" contentDisplay="CENTER" mnemonicParsing="false" text="Add New Sensor" />
               </children>
               <BorderPane.margin>
                 <Insets top="5.0" />
@@ -215,7 +214,7 @@
                                                    <GridPane.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </GridPane.margin></Label>
-                                                <Slider blockIncrement="1.0" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="12.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                <Slider blockIncrement="1.0" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="24" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="12.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                                    <padding>
                                                       <Insets left="10.0" right="10.0" />
                                                    </padding></Slider>

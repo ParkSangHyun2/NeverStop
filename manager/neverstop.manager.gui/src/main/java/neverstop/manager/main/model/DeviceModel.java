@@ -16,7 +16,7 @@ import neverstop.manager.entity.sensor.PowerBalance;
  * @since 08/09/2018
  */
 public class DeviceModel {
-
+    //
     private SimpleStringProperty deviceIdProperty;
     private SimpleObjectProperty<DeviceState> deviceStateProperty;
     private SimpleObjectProperty<PowerBalance> powerBalanceProperty;
@@ -58,6 +58,8 @@ public class DeviceModel {
         powerBalanceProperty.set(sensor.powerBalanceProperty().get());
         cpuUsageProperty.set(sensor.cpuUsageProperty().get());
         memoryUsageProperty.set(sensor.memoryUsageProperty().get());
+        rowDataProperty.set(sensor.rowDataProperty().get());
+        responseTimestampProperty.set(sensor.responseTimestampProperty().get());
     }
 
     public SimpleStringProperty deviceIdProperty() {
@@ -82,5 +84,9 @@ public class DeviceModel {
 
     public SimpleStringProperty responseTimestampProperty() {
         return responseTimestampProperty;
+    }
+
+    public SimpleStringProperty rowDataProperty() {
+        return rowDataProperty;
     }
 }
