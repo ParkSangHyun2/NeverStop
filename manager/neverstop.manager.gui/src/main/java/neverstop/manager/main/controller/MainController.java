@@ -65,9 +65,6 @@ public class MainController {
         initControls();
         bindEvents();
         getData();
-
-//        TODO: Remove sample data.
-//        addSampleData();
     }
 
     private void getData() {

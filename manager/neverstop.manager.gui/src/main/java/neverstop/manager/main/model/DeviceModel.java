@@ -37,11 +37,11 @@ public class DeviceModel {
 
     public DeviceModel(Device device) {
         //
+        this();
         setValues(device);
     }
 
     public void setValues(Device device) {
-        System.out.println(device.getDeviceId());
         this.deviceIdProperty.set(device.getDeviceId());
         this.deviceStateProperty.set(device.getDeviceState());
         this.powerBalanceProperty.set(device.getPowerBalance());
