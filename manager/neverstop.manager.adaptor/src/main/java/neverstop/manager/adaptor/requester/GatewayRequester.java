@@ -1,5 +1,7 @@
 package neverstop.manager.adaptor.requester;
 
+import java.util.List;
+
 import neverstop.manager.entity.sensor.Device;
 
 /**
@@ -10,5 +12,6 @@ import neverstop.manager.entity.sensor.Device;
  */
 public interface GatewayRequester {
 
-    Device checkSensor(String deviceId);
+    List<Device> checkAllDevices();
+    Device checkDevice(String deviceId);
 }

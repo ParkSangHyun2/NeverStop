@@ -36,8 +36,7 @@ public class NeverStopAgent {
 		try {
 			snmpAgent = new SNMPAgent(address);
 
-			for (int i = 0; i < 4; i++) {
-                DeviceState deviceState = new DeviceState(String.valueOf(i));
+                DeviceState deviceState = new DeviceState(String.valueOf(1));
                 MOTableBuilder builder = new MOTableBuilder(new OID(interfaceOID.getOID()))
                         .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
                         .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
@@ -54,7 +53,6 @@ public class NeverStopAgent {
                         .addRowValue(new OctetString(deviceState.getErrorHandler()));
 
                 snmpAgent.registerManagedObject(builder.build());
-            }
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -11,7 +11,7 @@ import java.util.Properties;
  */
 public class DeviceProperties {
     //
-    private static final String propertiesPath = "device.properties";
+    private static final String propertiesPath = "/device.properties";
     private Properties properties;
 
     public DeviceProperties() {

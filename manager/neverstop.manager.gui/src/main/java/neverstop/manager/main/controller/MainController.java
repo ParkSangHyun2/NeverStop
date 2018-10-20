@@ -3,6 +3,7 @@ package neverstop.manager.main.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -68,8 +69,8 @@ public class MainController {
     private void getData() {
         //
         deviceModels.clear();
-        for (int i = 0; i < 4; i++) {
-            Device device = requester.checkSensor(String.valueOf(i));
+        List<Device> devices = requester.checkAllDevices();
+        for (Device device : devices) {
             deviceModels.add(new DeviceModel(device));
         }
     }
