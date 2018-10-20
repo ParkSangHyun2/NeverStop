@@ -18,6 +18,7 @@ public class Device {
     private DeviceState deviceState;
     private List<String> rowDataArray;
     private String responseTimestamp;
+    private String netBandWith;
 
     public Device() {
         //
@@ -33,6 +34,14 @@ public class Device {
 
     public SystemMetric getSystemMetric() {
         return systemMetric;
+    }
+
+    public void setNetBandWith(String netBandWith) {
+        this.netBandWith = netBandWith;
+    }
+
+    public String getNetBandWith() {
+        return netBandWith;
     }
 
     public void setSystemMetric(SystemMetric systemMetric) {
@@ -73,19 +82,19 @@ public class Device {
 
     public static class SystemMetric {
 
-        private int cpuUsage;
-        private int memoryUsage;
+        private String processors;
+        private String memoryUsage;
 
-        public SystemMetric(int cpuUsage, int memoryUsage) {
-            this.cpuUsage = cpuUsage;
+        public SystemMetric(String processors, String memoryUsage) {
+            this.processors = processors;
             this.memoryUsage = memoryUsage;
         }
 
-        public int getCpuUsage() {
-            return cpuUsage;
+        public String getProcessors() {
+            return processors;
         }
 
-        public int getMemoryUsage() {
+        public String getMemoryUsage() {
             return memoryUsage;
         }
     }

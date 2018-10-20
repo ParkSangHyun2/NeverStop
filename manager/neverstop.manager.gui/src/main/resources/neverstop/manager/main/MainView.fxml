@@ -43,8 +43,9 @@
                 <TableColumn fx:id="deviceIdTableColumn" maxWidth="130.0" minWidth="-1.0" prefWidth="120.0" styleClass="center" text="Device ID" />
                 <TableColumn fx:id="deviceStateTableColumn" maxWidth="80.0" minWidth="-1.0" prefWidth="120.0" styleClass="center" text="State" />
                         <TableColumn fx:id="powerBalanceTableColumn" maxWidth="134.0" minWidth="-1.0" prefWidth="134.0" styleClass="center" text="Power Balance" />
-                        <TableColumn fx:id="cpuTableColumn" prefWidth="75.0" styleClass="center" text="CPU" />
+                        <TableColumn fx:id="processorTableColumn" prefWidth="75.0" styleClass="center" text="Processor" />
                 <TableColumn fx:id="memoryTableColumn" maxWidth="109.0" minWidth="-1.0" prefWidth="90.0" styleClass="center" text="Memory" />
+                        <TableColumn fx:id="netBandWithTableColumn" prefWidth="120.0" styleClass="center" text="NetBandWith" />
                         <TableColumn fx:id="responseTimeTableColumn" prefWidth="180.0" styleClass="center" text="Response Time" />
               </columns>
             </TableView>
@@ -130,7 +131,6 @@
                               </rowConstraints>
                               <children>
                                                 <Label text="State" GridPane.rowIndex="1" />
-                                <Button fx:id="killButton" mnemonicParsing="false" styleClass="btn-danger" text="Shutdown" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                                 <Label text="Device ID" />
                                                 <TextField fx:id="deviceIdTextField" GridPane.columnIndex="1" />
                                                 <Text fx:id="deviceStateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Unknown" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -218,11 +218,17 @@
                                                    <padding>
                                                       <Insets left="10.0" right="10.0" />
                                                    </padding></Slider>
-                                                <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
-                                                   <children>
-                                                      <Button contentDisplay="RIGHT" mnemonicParsing="false" styleClass="btn-success" text="Save" />
-                                                   </children>
-                                                </FlowPane>
+                                                <Label text="TRAP MESSAGE" textAlignment="CENTER" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <TextField fx:id="trapMessageTextField" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
                                              </children>
                                           </GridPane>
                                        </center>

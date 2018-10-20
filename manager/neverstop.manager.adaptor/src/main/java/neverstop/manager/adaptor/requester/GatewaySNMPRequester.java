@@ -29,17 +29,6 @@ public class GatewaySNMPRequester {
         this.properties = new DeviceProperties();
     }
 
-//    public List<Device> checkAllDevices() {
-//
-//        String[] managedDeviceIds = properties.getManagedDeviceIds();
-//        List<Device> devices = new ArrayList<Device>();
-//
-//        for (String deviceId : managedDeviceIds) {
-//            devices.add(checkDevice(deviceId));
-//        }
-//        return devices;
-//    }
-
     public List<Device> checkDevice() {
         //
         List<Device> deviceList = new ArrayList<Device>();
@@ -51,30 +40,21 @@ public class GatewaySNMPRequester {
                 new OID(StateOID.InterFace.getOID() + StateOID.DeviceId.getOID()),
                 new OID(StateOID.InterFace.getOID() + StateOID.PowerBalance.getOID()),
                 new OID(StateOID.InterFace.getOID() + StateOID.Processor.getOID()),
+                new OID(StateOID.InterFace.getOID() + StateOID.Memory.getOID()),
                 new OID(StateOID.InterFace.getOID() + StateOID.NetBandWidth.getOID()),
-                new OID(StateOID.InterFace.getOID() + StateOID.ErrorHandler.getOID()),
         });
 
-        for(List<String> deviceStates : states){
+        for(List<String> deviceStates : states) {
             Device device = new Device();
-//            device.setDeviceId(deviceId);
-//            device.setPowerBalance(PowerBalance.markState(Double.valueOf(states.get(0).replaceAll("[^0-9]", ""))));
-//            device.setSystemMetric(new Device.SystemMetric(Integer.valueOf(states.get(1).replaceAll("[^0-9]", ""))));
-//
-//            device.setDeviceState(DeviceState.Connected);
-//            device.setResponseTimestamp(new Date().toString());
-//            device.setRowDataArray(states);
-            device.setDeviceId(deviceStates.get(1));
-            device.setPowerBalance(PowerBalance.markState(Double.valueOf(deviceStates.get(2).replaceAll("[^0-9]", ""))));
-            device.setSystemMetric(new Device.SystemMetric(Integer.valueOf(deviceStates.get(3).replaceAll("[^0-9]", "")),
-                    Integer.valueOf(deviceStates.get(4).replaceAll("[^0-9]", ""))));
-
+            device.setDeviceId(deviceStates.get(0));
+            device.setPowerBalance(PowerBalance.markState(Double.valueOf(deviceStates.get(1).replaceAll("[^0-9]", ""))));
+            device.setSystemMetric(new Device.SystemMetric(deviceStates.get(2), deviceStates.get(3)));
+            device.setNetBandWith(deviceStates.get(4));
             device.setDeviceState(DeviceState.Connected);
             device.setResponseTimestamp(new Date().toString());
             device.setRowDataArray(deviceStates);
             deviceList.add(device);
         }
-
 
         try {
             requester.disconnect();

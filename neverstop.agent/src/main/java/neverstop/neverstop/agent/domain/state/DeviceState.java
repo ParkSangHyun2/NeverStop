@@ -18,7 +18,7 @@ public class DeviceState {
         powerBalance = String.valueOf(random.nextInt(100));
         processor = String.valueOf(random.nextInt(4));
         memory = String.valueOf(random.nextInt(100));
-        netBandWith = String.valueOf(random.nextInt(100));
+        netBandWith = String.valueOf("1.442 kHz");
         errorHandler = "Healthy";
     }
 

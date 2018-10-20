@@ -1,11 +1,8 @@
 package neverstop.manager.main.controller;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +31,8 @@ public class MainController {
     @FXML private TableColumn<DeviceModel, String> deviceIdTableColumn;
     @FXML private TableColumn<DeviceModel, DeviceState> deviceStateTableColumn;
     @FXML private TableColumn<DeviceModel, PowerBalance> powerBalanceTableColumn;
-    @FXML private TableColumn<DeviceModel, Integer> cpuTableColumn;
+    @FXML private TableColumn<DeviceModel, Integer> processorTableColumn;
+    @FXML private TableColumn<DeviceModel, String> netBandWithTableColumn;
     @FXML private TableColumn<DeviceModel, Integer> memoryTableColumn;
     @FXML private TableColumn<DeviceModel, String> responseTimeTableColumn;
 
@@ -44,6 +42,8 @@ public class MainController {
     @FXML private TextField cpuTextField;
     @FXML private TextField memoryTextField;
     @FXML private TextField rowDataTextField;
+
+    @FXML private TextField trapMessageTextField;
 
     @FXML private Button checkButton;
 
@@ -82,8 +82,9 @@ public class MainController {
         deviceIdTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, String>("deviceId"));
         deviceStateTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, DeviceState>("deviceState"));
         powerBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, PowerBalance>("powerBalance"));
-        cpuTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, Integer>("cpuUsage"));
+        processorTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, Integer>("processor"));
         memoryTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, Integer>("memoryUsage"));
+        netBandWithTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, String>("netBandWith"));
         responseTimeTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, String>("responseTimestamp"));
 
         deviceModel = new DeviceModel();
@@ -106,36 +107,14 @@ public class MainController {
         });
     }
 
-    private void addSampleData() {
-        //
-        deviceModels.clear();
-
-        Random random = new Random();
-
-        for (int i = 0; i < 10; i++) {
-            DeviceModel model = new DeviceModel();
-            int randomValue = random.nextInt(10000);
-            model.deviceIdProperty().set(String.format("00%02X%n", randomValue));
-            model.deviceStateProperty().set(DeviceState.Connected);
-            PowerBalance powerBalance = PowerBalance.HalfFull;
-            if ((i + random.nextInt()) % 2 == 0) {
-                powerBalance = PowerBalance.Full;
-            }
-            model.powerBalanceProperty().set(powerBalance);
-            Date now = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
-            model.responseTimestampProperty().set(format.format(now));
-            model.cpuUsageProperty().set(random.nextInt(10));
-            model.memoryUsageProperty().set(random.nextInt(10));
-            deviceModels.add(model);
-        }
-
+    private void listenTrapMessage() {
+        // TODO:
     }
 
     private void drawDetailInfromation() {
         deviceStateText.setText(deviceModel.deviceStateProperty().getValue().name());
         powerBalanceTextField.setText(deviceModel.powerBalanceProperty().getValue().name());
-        cpuTextField.textProperty().set(String.valueOf(deviceModel.cpuUsageProperty().get()));
+        cpuTextField.textProperty().set(String.valueOf(deviceModel.processorProperty().get()));
         memoryTextField.textProperty().set(String.valueOf(deviceModel.memoryUsageProperty().get()));
         System.out.println(deviceModel.rowDataProperty().get());
         rowDataTextField.textProperty().set(deviceModel.rowDataProperty().get());

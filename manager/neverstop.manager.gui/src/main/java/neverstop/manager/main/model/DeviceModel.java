@@ -2,7 +2,6 @@
 
 package neverstop.manager.main.model;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import neverstop.manager.entity.sensor.Device;
@@ -20,8 +19,9 @@ public class DeviceModel {
     private SimpleStringProperty deviceIdProperty;
     private SimpleObjectProperty<DeviceState> deviceStateProperty;
     private SimpleObjectProperty<PowerBalance> powerBalanceProperty;
-    private SimpleIntegerProperty cpuUsageProperty;
-    private SimpleIntegerProperty memoryUsageProperty;
+    private SimpleStringProperty processorProperty;
+    private SimpleStringProperty memoryUsageProperty;
+    private SimpleStringProperty netBandWithProperty;
     private SimpleStringProperty responseTimestampProperty;
     private SimpleStringProperty rowDataProperty;
 
@@ -29,8 +29,9 @@ public class DeviceModel {
         this.deviceIdProperty = new SimpleStringProperty();
         this.deviceStateProperty = new SimpleObjectProperty<>();
         this.powerBalanceProperty = new SimpleObjectProperty<>();
-        this.cpuUsageProperty = new SimpleIntegerProperty();
-        this.memoryUsageProperty = new SimpleIntegerProperty();
+        this.processorProperty = new SimpleStringProperty();
+        this.memoryUsageProperty = new SimpleStringProperty();
+        this.netBandWithProperty = new SimpleStringProperty();
         this.responseTimestampProperty = new SimpleStringProperty();
         this.rowDataProperty = new SimpleStringProperty();
     }
@@ -45,8 +46,9 @@ public class DeviceModel {
         this.deviceIdProperty.set(device.getDeviceId());
         this.deviceStateProperty.set(device.getDeviceState());
         this.powerBalanceProperty.set(device.getPowerBalance());
-        this.cpuUsageProperty.set(device.getSystemMetric().getCpuUsage());
+        this.processorProperty.set(device.getSystemMetric().getProcessors());
         this.memoryUsageProperty.set(device.getSystemMetric().getMemoryUsage());
+        this.netBandWithProperty.set(device.getNetBandWith());
         this.rowDataProperty.set(String.join("", device.getRowDataArray()));
         this.responseTimestampProperty.set(device.getResponseTimestamp());
     }
@@ -56,7 +58,7 @@ public class DeviceModel {
         deviceIdProperty.set(sensor.deviceIdProperty().get());
         deviceStateProperty.set(sensor.deviceStateProperty().get());
         powerBalanceProperty.set(sensor.powerBalanceProperty().get());
-        cpuUsageProperty.set(sensor.cpuUsageProperty().get());
+        processorProperty.set(sensor.processorProperty().get());
         memoryUsageProperty.set(sensor.memoryUsageProperty().get());
         rowDataProperty.set(sensor.rowDataProperty().get());
         responseTimestampProperty.set(sensor.responseTimestampProperty().get());
@@ -74,12 +76,16 @@ public class DeviceModel {
         return powerBalanceProperty;
     }
 
-    public SimpleIntegerProperty cpuUsageProperty() {
-        return cpuUsageProperty;
+    public SimpleStringProperty processorProperty() {
+        return processorProperty;
     }
 
-    public SimpleIntegerProperty memoryUsageProperty() {
+    public SimpleStringProperty memoryUsageProperty() {
         return memoryUsageProperty;
+    }
+
+    public SimpleStringProperty netBandWithProperty() {
+        return netBandWithProperty;
     }
 
     public SimpleStringProperty responseTimestampProperty() {

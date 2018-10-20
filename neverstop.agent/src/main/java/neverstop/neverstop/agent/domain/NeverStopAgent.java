@@ -37,10 +37,9 @@ public class NeverStopAgent {
 			snmpAgent = new SNMPAgent(address);
 
 			DeviceState deviceState = new DeviceState(String.valueOf(1));
-			DeviceState deviceState2= new DeviceState(String.valueOf(1));
-			DeviceState deviceState3 = new DeviceState(String.valueOf(1));
-			DeviceState deviceState4 = new DeviceState(String.valueOf(1));
-
+			DeviceState deviceState2= new DeviceState(String.valueOf(2));
+			DeviceState deviceState3 = new DeviceState(String.valueOf(3));
+			DeviceState deviceState4 = new DeviceState(String.valueOf(4));
 
                 MOTableBuilder builder = new MOTableBuilder(new OID(interfaceOID.getOID()))
                         .addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
