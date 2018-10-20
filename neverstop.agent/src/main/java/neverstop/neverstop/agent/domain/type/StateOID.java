@@ -3,11 +3,12 @@ package neverstop.neverstop.agent.domain.type;
 public enum StateOID {
 	//
 	InterFace(".1.3.6.1.4.1.50582.1.2.2"),
-	PowerBalance(".1"),
-	Processor(".2"),
-	Memory(".3"),
-	NetBandWidth(".4"),
-	ErrorHandler(".5");
+	DeviceId(".1"),
+	PowerBalance(".2"),
+	Processor(".3"),
+	Memory(".4"),
+	NetBandWidth(".5"),
+	ErrorHandler(".6");
 	
 	private String oid;
 	

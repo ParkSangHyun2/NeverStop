@@ -46,10 +46,10 @@ public class SNMPRequester implements NeverStopRequester{
 		return result;
 	}
 	
-	public List<String> getStates(OID[] oids){
+	public List<List<String>> getStates(OID[] oids){
 		//
-		List<String> states;
-		states = client.getTableAsStrings(oids).get(0);
+		List<List<String>> states;
+		states = client.getTableAsStrings(oids);
 		return states;
 	}
 	

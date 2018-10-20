@@ -69,7 +69,8 @@ public class MainController {
     private void getData() {
         //
         deviceModels.clear();
-        List<Device> devices = requester.checkAllDevices();
+//        List<Device> devices = requester.checkAllDevices();
+        List<Device> devices = requester.checkDevice();
         for (Device device : devices) {
             deviceModels.add(new DeviceModel(device));
         }

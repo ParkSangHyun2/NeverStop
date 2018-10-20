@@ -10,5 +10,5 @@ public interface NeverStopRequester {
 	//
 	String getState(StateOID stateOID);
 	
-	public List<String> getStates(OID[] oids);
+	List<List<String>> getStates(OID[] oids);
 }

@@ -14,11 +14,14 @@ public class Example {
 		//
 		SNMPRequester requester = new SNMPRequester();
 		requester.connect();
-		List<String> results = requester.getStates(new OID[]{
+		List<List<String>> results = requester.getStates(new OID[]{
 				new OID(StateOID.InterFace.getOID() + StateOID.ErrorHandler.getOID())
 						});
-		for(String result : results) {
-			System.out.println("RESULT : "+result);
+		for(List<String> result : results) {
+			for(String value : result ){
+				System.out.println("RESULT : "+value);
+			}
+
 		}
 		try {
 			requester.disconnect();

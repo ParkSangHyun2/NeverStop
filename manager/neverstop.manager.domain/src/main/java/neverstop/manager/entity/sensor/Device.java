@@ -76,7 +76,8 @@ public class Device {
         private int cpuUsage;
         private int memoryUsage;
 
-        public SystemMetric(int memoryUsage) {
+        public SystemMetric(int cpuUsage, int memoryUsage) {
+            this.cpuUsage = cpuUsage;
             this.memoryUsage = memoryUsage;
         }
 
