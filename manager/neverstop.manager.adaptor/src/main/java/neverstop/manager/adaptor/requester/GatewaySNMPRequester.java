@@ -1,11 +1,13 @@
 package neverstop.manager.adaptor.requester;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.snmp4j.smi.OID;
 
+import neverstop.manager.adaptor.config.DeviceProperties;
 import neverstop.manager.entity.sensor.Device;
 import neverstop.manager.entity.sensor.DeviceState;
 import neverstop.manager.entity.sensor.PowerBalance;
@@ -20,11 +22,25 @@ import neverstop.neverstop.client.request.SNMPRequester;
  */
 public class GatewaySNMPRequester implements GatewayRequester {
     //
+    private DeviceProperties properties;
+
     public GatewaySNMPRequester() {
         //
+        this.properties = new DeviceProperties();
     }
 
-    public Device checkSensor(String deviceId) {
+    public List<Device> checkAllDevices() {
+
+        String[] managedDeviceIds = properties.getManagedDeviceIds();
+        List<Device> devices = new ArrayList<Device>();
+
+        for (String deviceId : managedDeviceIds) {
+            devices.add(checkDevice(deviceId));
+        }
+        return devices;
+    }
+
+    public Device checkDevice(String deviceId) {
         //
         SNMPRequester requester = new SNMPRequester();
         requester.connect();
