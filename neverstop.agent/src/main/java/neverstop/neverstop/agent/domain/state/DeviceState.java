@@ -19,6 +19,7 @@ public class DeviceState {
         processor = String.valueOf(random.nextInt(4));
         memory = String.valueOf(random.nextInt(100));
         netBandWith = String.valueOf(random.nextInt(100));
+        errorHandler = "Healthy";
     }
 
     public String getDeviceId() {
