@@ -15,10 +15,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import neverstop.manager.adaptor.requester.GatewaySNMPRequester;
+import neverstop.manager.entity.sensor.Device;
 import neverstop.manager.entity.sensor.DeviceState;
 import neverstop.manager.entity.sensor.PowerBalance;
-import neverstop.manager.main.model.SensorModel;
-import neverstop.neverstop.client.request.SNMPRequester;
+import neverstop.manager.main.model.DeviceModel;
 
 /**
  * MainController
@@ -28,13 +29,13 @@ import neverstop.neverstop.client.request.SNMPRequester;
  */
 public class MainController {
 
-    @FXML private TableView<SensorModel> managedSensorTableView;
-    @FXML private TableColumn<SensorModel, String> deviceIdTableColumn;
-    @FXML private TableColumn<SensorModel, DeviceState> deviceStateTableColumn;
-    @FXML private TableColumn<SensorModel, PowerBalance> powerBalanceTableColumn;
-    @FXML private TableColumn<SensorModel, Integer> cpuTableColumn;
-    @FXML private TableColumn<SensorModel, Integer> memoryTableColumn;
-    @FXML private TableColumn<SensorModel, String> responseTimeTableColumn;
+    @FXML private TableView<DeviceModel> managedSensorTableView;
+    @FXML private TableColumn<DeviceModel, String> deviceIdTableColumn;
+    @FXML private TableColumn<DeviceModel, DeviceState> deviceStateTableColumn;
+    @FXML private TableColumn<DeviceModel, PowerBalance> powerBalanceTableColumn;
+    @FXML private TableColumn<DeviceModel, Integer> cpuTableColumn;
+    @FXML private TableColumn<DeviceModel, Integer> memoryTableColumn;
+    @FXML private TableColumn<DeviceModel, String> responseTimeTableColumn;
 
     @FXML private TextField deviceIdTextField;
     @FXML private Text deviceStateText;
@@ -47,15 +48,15 @@ public class MainController {
 
     private Properties properties;
 
-    private SensorModel sensorModel;
-    private ObservableList<SensorModel> sensorModels;
+    private DeviceModel deviceModel;
+    private ObservableList<DeviceModel> deviceModels;
 
-    private SNMPRequester requester;
+    private GatewaySNMPRequester requester;
 
     public MainController() {
         //
-        this.sensorModels = FXCollections.observableArrayList();
-        this.requester = new SNMPRequester();
+        this.deviceModels = FXCollections.observableArrayList();
+        this.requester = new GatewaySNMPRequester();
 
     }
 
@@ -71,35 +72,38 @@ public class MainController {
 
     private void getData() {
         //
+        deviceModels.clear();
+        Device device = requester.checkSensor("1");
+        deviceModels.add(new DeviceModel(device));
     }
 
     private void initControls() {
         //
-        managedSensorTableView.setItems(sensorModels);
-        deviceIdTableColumn.setCellValueFactory(new PropertyValueFactory<SensorModel, String>("deviceId"));
-        deviceStateTableColumn.setCellValueFactory(new PropertyValueFactory<SensorModel, DeviceState>("deviceState"));
-        powerBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<SensorModel, PowerBalance>("powerBalance"));
-        cpuTableColumn.setCellValueFactory(new PropertyValueFactory<SensorModel, Integer>("cpuUsage"));
-        memoryTableColumn.setCellValueFactory(new PropertyValueFactory<SensorModel, Integer>("memoryUsage"));
-        responseTimeTableColumn.setCellValueFactory(new PropertyValueFactory<SensorModel, String>("responseTimestamp"));
+        managedSensorTableView.setItems(deviceModels);
+        deviceIdTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, String>("deviceId"));
+        deviceStateTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, DeviceState>("deviceState"));
+        powerBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, PowerBalance>("powerBalance"));
+        cpuTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, Integer>("cpuUsage"));
+        memoryTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, Integer>("memoryUsage"));
+        responseTimeTableColumn.setCellValueFactory(new PropertyValueFactory<DeviceModel, String>("responseTimestamp"));
 
-        sensorModel = new SensorModel();
-        deviceIdTextField.textProperty().bindBidirectional(sensorModel.deviceIdProperty());
+        deviceModel = new DeviceModel();
+        deviceIdTextField.textProperty().bindBidirectional(deviceModel.deviceIdProperty());
     }
 
     private void bindEvents() {
         //
         managedSensorTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                sensorModel.setValues(newVal);
+                deviceModel.setValues(newVal);
                 drawDetailInfromation();
             }
         });
 
         checkButton.setOnAction(event -> {
-            for (SensorModel sensorModel : sensorModels) {
-//                Sensor sensor = requester.checkSensor(sensorModel.deviceIdProperty().get());
-//                sensorModel.setValues(sensor);
+            for (DeviceModel deviceModel : deviceModels) {
+//                Device sensor = requester.checkSensor(deviceModel.deviceIdProperty().get());
+//                deviceModel.setValues(sensor);
             }
         });
 
@@ -107,12 +111,12 @@ public class MainController {
 
     private void addSampleData() {
         //
-        sensorModels.clear();
+        deviceModels.clear();
 
         Random random = new Random();
 
         for (int i = 0; i < 10; i++) {
-            SensorModel model = new SensorModel();
+            DeviceModel model = new DeviceModel();
             int randomValue = random.nextInt(10000);
             model.deviceIdProperty().set(String.format("00%02X%n", randomValue));
             model.deviceStateProperty().set(DeviceState.Connected);
@@ -126,15 +130,15 @@ public class MainController {
             model.responseTimestampProperty().set(format.format(now));
             model.cpuUsageProperty().set(random.nextInt(10));
             model.memoryUsageProperty().set(random.nextInt(10));
-            sensorModels.add(model);
+            deviceModels.add(model);
         }
 
     }
 
     private void drawDetailInfromation() {
-        deviceStateText.setText(sensorModel.deviceStateProperty().getValue().name());
-        powerBalanceTextField.setText(sensorModel.powerBalanceProperty().getValue().name());
-        cpuTextField.textProperty().set(String.valueOf(sensorModel.cpuUsageProperty().get()));
-        memoryTextField.textProperty().set(String.valueOf(sensorModel.memoryUsageProperty().get()));
+        deviceStateText.setText(deviceModel.deviceStateProperty().getValue().name());
+        powerBalanceTextField.setText(deviceModel.powerBalanceProperty().getValue().name());
+        cpuTextField.textProperty().set(String.valueOf(deviceModel.cpuUsageProperty().get()));
+        memoryTextField.textProperty().set(String.valueOf(deviceModel.memoryUsageProperty().get()));
     }
 }

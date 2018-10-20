@@ -5,17 +5,17 @@ package neverstop.manager.main.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import neverstop.manager.entity.sensor.Device;
 import neverstop.manager.entity.sensor.DeviceState;
 import neverstop.manager.entity.sensor.PowerBalance;
-import neverstop.manager.entity.sensor.Sensor;
 
 /**
- * SensorModel
+ * DeviceModel
  *
  * @author @author <a href="mailto:mhjang@nextree.co.kr">Jang, Mihyeon</a>
  * @since 08/09/2018
  */
-public class SensorModel {
+public class DeviceModel {
 
     private SimpleStringProperty deviceIdProperty;
     private SimpleObjectProperty<DeviceState> deviceStateProperty;
@@ -25,7 +25,7 @@ public class SensorModel {
     private SimpleStringProperty responseTimestampProperty;
     private SimpleStringProperty rowDataProperty;
 
-    public SensorModel() {
+    public DeviceModel() {
         this.deviceIdProperty = new SimpleStringProperty();
         this.deviceStateProperty = new SimpleObjectProperty<>();
         this.powerBalanceProperty = new SimpleObjectProperty<>();
@@ -35,22 +35,23 @@ public class SensorModel {
         this.rowDataProperty = new SimpleStringProperty();
     }
 
-    public SensorModel(Sensor sensor) {
+    public DeviceModel(Device device) {
         //
-        setValues(sensor);
+        setValues(device);
     }
 
-    public void setValues(Sensor sensor) {
-        this.deviceIdProperty.set(sensor.getDeviceId());
-        this.deviceStateProperty.set(sensor.getDeviceState());
-        this.powerBalanceProperty.set(sensor.getPowerBalance());
-        this.cpuUsageProperty.set(sensor.getSystemMetric().getCpuUsage());
-        this.memoryUsageProperty.set(sensor.getSystemMetric().getMemoryUsage());
-        this.rowDataProperty.set(String.join("", sensor.getRowDataArray()));
-
+    public void setValues(Device device) {
+        System.out.println(device.getDeviceId());
+        this.deviceIdProperty.set(device.getDeviceId());
+        this.deviceStateProperty.set(device.getDeviceState());
+        this.powerBalanceProperty.set(device.getPowerBalance());
+        this.cpuUsageProperty.set(device.getSystemMetric().getCpuUsage());
+        this.memoryUsageProperty.set(device.getSystemMetric().getMemoryUsage());
+        this.rowDataProperty.set(String.join("", device.getRowDataArray()));
+        this.responseTimestampProperty.set(device.getResponseTimestamp());
     }
 
-    public void setValues(SensorModel sensor) {
+    public void setValues(DeviceModel sensor) {
         //
         deviceIdProperty.set(sensor.deviceIdProperty().get());
         deviceStateProperty.set(sensor.deviceStateProperty().get());

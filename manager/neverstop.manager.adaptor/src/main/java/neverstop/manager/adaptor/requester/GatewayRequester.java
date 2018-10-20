@@ -1,6 +1,6 @@
 package neverstop.manager.adaptor.requester;
 
-import neverstop.manager.entity.sensor.Sensor;
+import neverstop.manager.entity.sensor.Device;
 
 /**
  * GatewayRequester
@@ -10,5 +10,5 @@ import neverstop.manager.entity.sensor.Sensor;
  */
 public interface GatewayRequester {
 
-    Sensor checkSensor(String deviceId);
+    Device checkSensor(String deviceId);
 }

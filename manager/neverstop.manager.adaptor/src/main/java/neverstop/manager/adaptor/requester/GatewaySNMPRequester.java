@@ -1,11 +1,14 @@
 package neverstop.manager.adaptor.requester;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.snmp4j.smi.OID;
 
-import neverstop.manager.entity.sensor.Sensor;
+import neverstop.manager.entity.sensor.Device;
+import neverstop.manager.entity.sensor.DeviceState;
+import neverstop.manager.entity.sensor.PowerBalance;
 import neverstop.neverstop.agent.domain.type.StateOID;
 import neverstop.neverstop.client.request.SNMPRequester;
 
@@ -21,17 +24,24 @@ public class GatewaySNMPRequester implements GatewayRequester {
         //
     }
 
-    public Sensor checkSensor(String deviceId) {
+    public Device checkSensor(String deviceId) {
         //
         SNMPRequester requester = new SNMPRequester();
         requester.connect();
-        List<String> results = requester.getStates(new OID[]{
-                new OID(StateOID.InterFace.getOID() + StateOID.ErrorHandler.getOID())
+
+        List<String> states = requester.getStates(new OID[]{
+                new OID(StateOID.InterFace.getOID() + StateOID.PowerBalance.getOID()),
+                new OID(StateOID.InterFace.getOID() + StateOID.Memory.getOID()),
         });
 
-        for (String result : results) {
-            System.out.println("RESULT : " + result);
-        }
+        Device device = new Device();
+        device.setDeviceId(deviceId);
+        device.setPowerBalance(PowerBalance.markState(Double.valueOf(states.get(0).replaceAll("[^0-9]", ""))));
+        device.setSystemMetric(new Device.SystemMetric(Integer.valueOf(states.get(1).replaceAll("[^0-9]", ""))));
+
+        device.setDeviceState(DeviceState.Connected);
+        device.setResponseTimestamp(new Date().toString());
+        device.setRowDataArray(states);
 
         try {
             requester.disconnect();
@@ -40,10 +50,6 @@ public class GatewaySNMPRequester implements GatewayRequester {
             e.printStackTrace();
         }
 
-        // TODO: parse result;
-        System.out.println(results.size());
-
-        return new Sensor();
+        return device;
     }
-
 }

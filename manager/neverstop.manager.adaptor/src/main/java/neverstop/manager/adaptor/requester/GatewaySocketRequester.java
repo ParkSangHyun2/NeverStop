@@ -9,7 +9,7 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
-import neverstop.manager.entity.sensor.Sensor;
+import neverstop.manager.entity.sensor.Device;
 
 /**
  * GatewaySocketRequester
@@ -28,7 +28,7 @@ public class GatewaySocketRequester implements GatewayRequester {
         this.port = 18080;
     }
 
-    public Sensor checkSensor(String deviceId) {
+    public Device checkSensor(String deviceId) {
         //
         Socket socket = null;
         try {
@@ -46,7 +46,7 @@ public class GatewaySocketRequester implements GatewayRequester {
             while (!reader.ready()) {
                 String response = reader.readLine();
                 reader.close();
-                return gson.fromJson(response, Sensor.class);
+                return gson.fromJson(response, Device.class);
             }
         } catch (IOException e) {
             e.printStackTrace();

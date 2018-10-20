@@ -22,7 +22,7 @@ public enum PowerBalance {
         return code;
     }
 
-    public PowerBalance valueOf(int code) {
+    public static PowerBalance valueOf(int code) {
         for (PowerBalance powerBalance : PowerBalance.values()) {
             if (powerBalance.getCode() == code) {
                 return powerBalance;
@@ -30,5 +30,16 @@ public enum PowerBalance {
         }
 
         return null;
+    }
+
+    public static PowerBalance markState(double powerBalance) {
+        //
+        if (powerBalance > 90) {
+            return Full;
+        } else if (powerBalance > 50) {
+            return HalfFull;
+        } else {
+            return Danger;
+        }
     }
 }

@@ -2,22 +2,24 @@
 
 package neverstop.manager.entity.sensor;
 
+import java.util.List;
+
 /**
- * Sensor
+ * Device
  *
  * @author @author <a href="mailto:mhjang@nextree.co.kr">Jang, Mihyeon</a>
  * @since 08/09/2018
  */
-public class Sensor {
+public class Device {
 
     private String deviceId;
     private SystemMetric systemMetric;
     private PowerBalance powerBalance;
     private DeviceState deviceState;
-    private String[] rowDataArray;
+    private List<String> rowDataArray;
     private String responseTimestamp;
 
-    public Sensor() {
+    public Device() {
         //
     }
 
@@ -53,11 +55,11 @@ public class Sensor {
         this.deviceState = deviceState;
     }
 
-    public String[] getRowDataArray() {
+    public List<String> getRowDataArray() {
         return rowDataArray;
     }
 
-    public void setRowDataArray(String[] rowDataArray) {
+    public void setRowDataArray(List<String> rowDataArray) {
         this.rowDataArray = rowDataArray;
     }
 
