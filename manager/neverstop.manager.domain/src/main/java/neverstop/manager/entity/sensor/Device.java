@@ -11,7 +11,7 @@ import java.util.List;
  * @since 08/09/2018
  */
 public class Device {
-
+    //
     private String deviceId;
     private SystemMetric systemMetric;
     private PowerBalance powerBalance;

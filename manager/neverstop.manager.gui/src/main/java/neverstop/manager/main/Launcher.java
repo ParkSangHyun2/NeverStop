@@ -34,6 +34,7 @@ public class Launcher extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
         primaryStage.show();
+        primaryStage.setOnCloseRequest(event -> controller.dispose());
         controller.initialize();
     }
 

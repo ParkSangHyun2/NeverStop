@@ -23,9 +23,11 @@ public class DeviceModel {
     private SimpleStringProperty memoryUsageProperty;
     private SimpleStringProperty netBandWithProperty;
     private SimpleStringProperty responseTimestampProperty;
+    private SimpleStringProperty addressProperty;
     private SimpleStringProperty rowDataProperty;
 
     public DeviceModel() {
+        //
         this.deviceIdProperty = new SimpleStringProperty();
         this.deviceStateProperty = new SimpleObjectProperty<>();
         this.powerBalanceProperty = new SimpleObjectProperty<>();
@@ -33,6 +35,7 @@ public class DeviceModel {
         this.memoryUsageProperty = new SimpleStringProperty();
         this.netBandWithProperty = new SimpleStringProperty();
         this.responseTimestampProperty = new SimpleStringProperty();
+        this.addressProperty = new SimpleStringProperty();
         this.rowDataProperty = new SimpleStringProperty();
     }
 
@@ -90,6 +93,10 @@ public class DeviceModel {
 
     public SimpleStringProperty responseTimestampProperty() {
         return responseTimestampProperty;
+    }
+
+    public SimpleStringProperty addressProperty() {
+        return addressProperty;
     }
 
     public SimpleStringProperty rowDataProperty() {

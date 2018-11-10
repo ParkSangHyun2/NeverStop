@@ -8,13 +8,23 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<BorderPane prefWidth="1010.0" styleClass="main-content-area" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<BorderPane prefWidth="1010.0" styleClass="main-content-area" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
   <top>
     <FlowPane fx:id="borderPaneTopFlowPane" alignment="CENTER_LEFT" styleClass="top-search-area" BorderPane.alignment="CENTER">
       <children>
-        <Label text="Underwater Network Management System" />
+        <Label text="Underwater Network Management System" underline="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
         <Label fx:id="checkComboBoxLabel">
           <FlowPane.margin>
             <Insets left="20.0" right="10.0" />
@@ -43,8 +53,9 @@
                 <TableColumn fx:id="deviceIdTableColumn" maxWidth="130.0" minWidth="-1.0" prefWidth="120.0" styleClass="center" text="Device ID" />
                 <TableColumn fx:id="deviceStateTableColumn" maxWidth="80.0" minWidth="-1.0" prefWidth="120.0" styleClass="center" text="State" />
                         <TableColumn fx:id="powerBalanceTableColumn" maxWidth="134.0" minWidth="-1.0" prefWidth="134.0" styleClass="center" text="Power Balance" />
-                        <TableColumn fx:id="cpuTableColumn" prefWidth="75.0" styleClass="center" text="CPU" />
+                        <TableColumn fx:id="processorTableColumn" prefWidth="75.0" styleClass="center" text="Processor" />
                 <TableColumn fx:id="memoryTableColumn" maxWidth="109.0" minWidth="-1.0" prefWidth="90.0" styleClass="center" text="Memory" />
+                        <TableColumn fx:id="netBandWithTableColumn" prefWidth="120.0" styleClass="center" text="NetBandWith" />
                         <TableColumn fx:id="responseTimeTableColumn" prefWidth="180.0" styleClass="center" text="Response Time" />
               </columns>
             </TableView>
@@ -59,7 +70,7 @@
                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
               </rowConstraints>
               <children>
-                <Label text="Underwater Sensor Manager" />
+                <Label text="Managed Devices" />
                         <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="1">
                            <children>
                               <Button fx:id="checkButton" mnemonicParsing="false" text="Check" />
@@ -130,7 +141,6 @@
                               </rowConstraints>
                               <children>
                                                 <Label text="State" GridPane.rowIndex="1" />
-                                <Button fx:id="killButton" mnemonicParsing="false" styleClass="btn-danger" text="Shutdown" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                                 <Label text="Device ID" />
                                                 <TextField fx:id="deviceIdTextField" GridPane.columnIndex="1" />
                                                 <Text fx:id="deviceStateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Unknown" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -218,11 +228,17 @@
                                                    <padding>
                                                       <Insets left="10.0" right="10.0" />
                                                    </padding></Slider>
-                                                <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
-                                                   <children>
-                                                      <Button contentDisplay="RIGHT" mnemonicParsing="false" styleClass="btn-success" text="Save" />
-                                                   </children>
-                                                </FlowPane>
+                                                <Label text="TRAP MESSAGE" textAlignment="CENTER" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <TextField fx:id="trapMessageTextField" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
                                              </children>
                                           </GridPane>
                                        </center>
